@@ -1,0 +1,43 @@
+body{
+    text-align: center;
+}
+
+
+
+#buttonContainer{
+    display: grid;   
+    max-width: 300px;
+    max-height: 400px;
+    min-height: 400px;
+    min-width: 300px;
+    margin: 7rem auto;
+    border: 2px solid black;
+    grid-template-columns: repeat(4,1fr);
+    
+    /* background-color: darkslategrey; */
+}
+
+.gridItem{
+    padding: 20px;
+    border: 2px solid black;
+    margin: 2px;
+    /* border-radius: 20px; */
+}
+
+.backspace{
+    grid-column: 3/5;
+    grid-row: 6/7;
+}
+
+.Screen{
+    min-width: 200px;
+    min-height: 20px;
+    max-height: 20px;
+    grid-row: 1/1;
+    grid-column: 1/5;
+}
+
+ .btn{
+    outline: none;
+} 
+
