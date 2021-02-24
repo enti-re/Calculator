@@ -1,113 +1,61 @@
 const container = document.querySelector("#buttonContainer");
 const gridItem = document.querySelectorAll(".btn");
+const display = document.querySelector(".display");
 const gridArray = [...gridItem];
 let equation="";
+let checkOperator = false;
+let firstOperand;
+window.addEventListener("keydown",enterInput);
 
-gridArray.forEach((button)=>{
-    button.addEventListener("click",function(){
-        if(button.textContent == "AC")
-            equation="";
-        else if(button.textContent=="C")
-            equation = equation.substring(0,equation.length-1);
-        else if(button.textContent=="=")
-        {
-            let result = Calculation(equation)
-            equation=result;
-        }
-        else
-            equation+=button.textContent;
-    })
-})
+console.log(display.textContent);
+function includeNumber(num)
+{
+    if(checkOperator) evaluate();
+    display.textContent+=num;   
+    console.log(display.textContent);
+}
 
-// function Calculation(exp)
-// {
-//     if(exp=="")
-//         return "ERROR";    
-    
-//     for(let i=0;i<exp.length;i++)
-//     {
-//         if(exp[i]=='/')
+function includeOperator(operator)
+{
+    firstOperand=display;
+    display.textContent="";
+    display.textContent+=operator;
+    console.log(display.textContent);
+    checkOperator=true;
+}
+
+
+
+function evaluate()
+{
+
+}
+
+function enterInput(e)
+{
+    if(e.key>=0 && e.key<=9) includeNumber(e.key);
+    if(e.key==".") console.log("Dot is pressed");
+    if(e.key=="Backspace") console.log("Backspace is pressed");  
+    if(e.key=="=") console.log("= is pressed");
+    if(e.key=="+" || e.key=="-" || e.key=="%" || e.key=="/" || e.key=="*") includeOperator(e.key);
+    if(e.key=="Escape") console.log("Escape is pressed");     
+}
+
+
+// gridArray.forEach((button)=>{
+//     button.addEventListener("click",function(){
+//         if(button.textContent == "AC")
+//             equation="";
+//         else if(button.textContent=="C")
+//             equation = equation.substring(0,equation.length-1);
+//         else if(button.textContent=="=")
 //         {
-//             if(isValid(exp,i))
-//                 exp=divide(exp,i);
-//             else
-//                 return "ERROR";
+//             let result = Calculation(equation)
+//             equation=result;
 //         }
-//     }
+//         else
+//             equation+=button.textContent;
+//     })
+// })
 
-//     for(let i=0;i<exp.length;i++)
-//     {
-//         if(exp[i]=='*')
-//         {
-//             if(isValid(exp,i))
-//                 exp=multiply(exp,i);
-//             else
-//                 return "ERROR";
-//         }
-//     }
-
-//     for(let i=0;i<exp.length;i++)
-//     {
-//         if(exp[i]=='%')
-//         {
-//             if(isValid(exp,i))
-//                 exp=modulus(exp,i);
-//             else
-//                 return "ERROR";
-//         }
-//     }
-
-//     for(let i=0;i<exp.length;i++)
-//     {
-//         if(exp[i]=='+')
-//         {
-//             if(isValid(exp,i))
-//                 exp=add(exp,i);
-//             else
-//                 return "ERROR";
-//         }
-//     }
-
-//     for(let i=0;i<exp.length;i++)
-//     {
-//         if(exp[i]=='-')
-//         {
-//             if(isValid(exp,i))
-//                 exp=sub(exp,i);
-//             else
-//                 return "ERROR";
-//         }
-//     }
-
-//     return exp;
-// }
-
-// function isValid(exp,index)
-// {
-//     let arr = ['+','-','/','%','*'];
-//     if(index<0 || index>exp.length || !arr.includes(exp[index-1]) || !arr.includes(exp[index+1]))
-//         return false;
-//     return true;
-// }
-
-// function add(exp,index)
-// {
-//     let sum = exp[index-1]+exp[index+1];
-//     ex    
-// }
-// const subtract = (x,y) => abs(x-y);
-// const multiply = (x,y) => (x*y);
-// const divide = (x,y) => x/y;
-
-// function operate(operand,operator1,operator2)
-// {
-//     if(operand=='+')
-//         add(operator1,operator2);
-//     else if(operand=='-')
-//         subtract(operator1,operator2);
-//     else if(operand=='*')
-//         multiply(operator1,operator2);
-//     else if(operand=='/')
-//         divide(operator1,operator2);
-// }
 
