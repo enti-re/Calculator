@@ -2,7 +2,12 @@ const container = document.querySelector("#buttonContainer");
 const gridItem = document.querySelectorAll(".btn");
 const display = document.querySelector(".Screen ");
 const gridArray = [...gridItem];
-
+const number = document.querySelectorAll(".number")
+const dot = document.querySelector(".dot");
+const clear = document.querySelector(".clear");
+const back = document.querySelector(".backspace");
+const operator = document.querySelectorAll(".operator");
+const equal = document.querySelector(".equal");
 let equation="";
 let firstOperand;
 let secondOperand;
@@ -10,6 +15,39 @@ let isSecondOperandNot = false;
 let currentOperator=null;
 
 window.addEventListener("keydown",enterInput);
+number.forEach(num => {
+    num.addEventListener("click",()=>{
+        console.log(num.textContent);
+        includeNumber(num.textContent)
+    });
+}
+);
+
+operator.forEach(sign=>{
+    sign.addEventListener("click",()=>{
+        console.log(sign.textContent);
+        includeOperator(sign.textContent);
+    })
+})
+
+dot.addEventListener("click",()=>{
+    includeDot();
+})
+
+equal.addEventListener("click",()=>{
+    evaluate();
+})
+
+clear.addEventListener("click",()=>{
+    resetDisplay();
+})
+
+back.addEventListener("click",()=>{
+    backspace();
+})
+
+
+
 
 
 function resetDisplay()
